@@ -1,27 +1,27 @@
-import { Button, Form, FormInstance, Input } from "antd";
-import * as React from "react";
-import { FieldType, InputInitialize } from "../types";
-import useInitialize from "../hooks/useInitialize";
-import { WriteContractResult } from "@wagmi/core";
+import { Button, Form, FormInstance, Input } from "antd"
+import * as React from "react"
+import { FieldType, InputInitialize } from "../types"
+import useInitialize from "../hooks/useInitialize"
+import { WriteContractResult } from "@wagmi/core"
 
 type FormProps = {
-  inputData?: any;
-  setInputData?: React.Dispatch<React.SetStateAction<any>>;
-  data: WriteContractResult | undefined;
-  error?: Error | null;
-  isLoading?: boolean;
-  isSuccess?: boolean;
-  write: any;
-  isError?: boolean;
-  isPrepareError?: boolean;
-  prepareError?: boolean;
-  fieldList?: FieldType[];
-  onFinish?: any;
-  onFill?: any;
-  onReset?: any;
-  buttonLabel: string;
-  form?: FormInstance<any>;
-};
+  inputData?: any
+  setInputData?: React.Dispatch<React.SetStateAction<any>>
+  data?: any
+  error?: Error | null
+  isLoading?: boolean
+  isSuccess?: boolean
+  write?: any
+  isError?: boolean
+  isPrepareError?: boolean
+  prepareError?: boolean
+  fieldList?: FieldType[]
+  onFinish?: any
+  onFill?: any
+  onReset?: any
+  buttonLabel: string
+  form?: FormInstance<any>
+}
 
 export default function FormCustom({
   inputData,
@@ -44,13 +44,13 @@ export default function FormCustom({
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 },
-  };
+  }
 
   const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
-  };
+  }
   // const [form] = Form.useForm();
-
+  console.log(data)
   return (
     <Form
       {...layout}
@@ -91,6 +91,7 @@ export default function FormCustom({
           View your transaction
         </a>
       )}
+      {data && isSuccess && data.map((x: any) => <p>{Number(x.result)}</p>)}
     </Form>
-  );
+  )
 }

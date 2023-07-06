@@ -9,12 +9,8 @@ export function ReadContracts(props: ISetRateCurrencyProps) {
   const items: CollapseProps["items"] = [
     {
       key: "1",
-      label: "Set Swapped Currency Rate and Decimals",
-      children: (
-        <>
-          <Read></Read>
-        </>
-      ),
+      label: "Get Swapped Currency Rate and Decimals",
+      children: <Read></Read>,
     },
     {
       key: "2",

@@ -11,7 +11,7 @@ export function LoggedIn(props: ILoggedInProps) {
       <Header></Header>
       <Intro></Intro>
       <div className="flex flex-col gap-3">
-        {/* <ReadContracts></ReadContracts> */}
+        <ReadContracts></ReadContracts>
         <WriteContracts></WriteContracts>
       </div>
     </div>
