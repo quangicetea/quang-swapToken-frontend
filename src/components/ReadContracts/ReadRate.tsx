@@ -1,19 +1,15 @@
+import { Form } from "antd"
 import * as React from "react"
-import abi from "../../contracts/abi/TokenSwap.json"
-import { TOKENSWAP_ADDRESS, XYZCOIN_ADDRESS } from "../../constants/address"
-import { useContractRead } from "wagmi"
+import { XYZCOIN_ADDRESS } from "../../constants/address"
 import useReadRate from "../../hooks/useReadRate"
 import FormCustom from "../FormCustom"
-import { InputReadRate } from "../../types"
-import { Form } from "antd"
 export interface IReadProps {}
 
-export function Read(props: IReadProps) {
+export function ReadRate(props: IReadProps) {
   const [inputData, setInputData] = React.useState<any>({})
   const { data, isSuccess } = useReadRate(inputData.currency)
   const [form] = Form.useForm()
   const onFinish = (values: any) => {
-    console.log(values)
     setInputData(values)
   }
   const onReset = () => {

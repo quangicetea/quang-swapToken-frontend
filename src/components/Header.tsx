@@ -1,11 +1,11 @@
 import { Button } from "antd"
-import { useAccount, useDisconnect } from "wagmi"
+import { useAccount, useDisconnect, useNetwork } from "wagmi"
 
 export interface IHeaderProps {}
 
 export function Header(props: IHeaderProps) {
   const { address } = useAccount()
-
+  const { chain, chains } = useNetwork()
   const { disconnect } = useDisconnect()
 
   return (
@@ -17,6 +17,15 @@ export function Header(props: IHeaderProps) {
       >
         Disconnect
       </Button>
+      {chain && <p className="font-bold">Connected to {chain.name}</p>}
+      {chains && (
+        <div className="font-bold">
+          Available chains:{" "}
+          {chains.map((chain) => (
+            <p>{chain.name}</p>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

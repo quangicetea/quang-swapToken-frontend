@@ -1,8 +1,6 @@
 import { Button, Form, FormInstance, Input } from "antd"
 import * as React from "react"
-import { FieldType, InputInitialize } from "../types"
-import useInitialize from "../hooks/useInitialize"
-import { WriteContractResult } from "@wagmi/core"
+import { FieldType } from "../types"
 
 type FormProps = {
   inputData?: any
@@ -49,8 +47,6 @@ export default function FormCustom({
   const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
   }
-  // const [form] = Form.useForm();
-  console.log(data)
   return (
     <Form
       {...layout}
@@ -91,7 +87,17 @@ export default function FormCustom({
           View your transaction
         </a>
       )}
-      {data && isSuccess && data.map((x: any) => <p>{Number(x.result)}</p>)}
+
+      {data && isSuccess && (
+        <>
+          <p>
+            Successfully! Decimal and Rate is:
+            {data.map((x: any) => (
+              <p>{Number(x.result)}</p>
+            ))}
+          </p>
+        </>
+      )}
     </Form>
   )
 }

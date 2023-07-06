@@ -1,18 +1,13 @@
-import { Button, Form, Input } from "antd"
+import { Form } from "antd"
 import * as React from "react"
 import { XYZCOIN_ADDRESS } from "../../constants/address"
 import useSetSwappedCurrencyRateAndDecimals from "../../hooks/useSetSwappedCurrencyRateAndDecimals"
-import { InputSetCurrencyAndRate } from "../../types"
 import FormCustom from "../FormCustom"
 
 export interface ISetCurrencyAndRateProps {}
 
 export function SetCurrencyAndRate({}: ISetCurrencyAndRateProps) {
-  const [inputData, setInputData] = React.useState<InputSetCurrencyAndRate>({
-    currency: XYZCOIN_ADDRESS,
-    rate: 123,
-    decimals: 2,
-  })
+  const [inputData, setInputData] = React.useState<any>({})
   const { data, write, isSuccess } = useSetSwappedCurrencyRateAndDecimals(
     inputData.currency,
     inputData.rate,
@@ -36,7 +31,6 @@ export function SetCurrencyAndRate({}: ISetCurrencyAndRateProps) {
     { id: 2, name: "rate", label: "Rate" },
     { id: 3, name: "decimals", label: "Decimals" },
   ]
-  console.log("is success", isSuccess)
   return (
     <FormCustom
       form={form}

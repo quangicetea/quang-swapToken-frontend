@@ -28,7 +28,7 @@ const useReadRate = (currency: `0x${string}`) => {
         args: [currency],
       },
     ],
-    enabled: false,
+    enabled: Boolean(currency),
     watch: true,
     onSuccess(data) {
       console.log("Success", data)

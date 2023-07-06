@@ -1,8 +1,6 @@
 import type { CollapseProps } from "antd"
 import { Collapse } from "antd"
-import * as React from "react"
-import { Read } from "./Read"
-
+import { ReadRate } from "./ReadRate"
 export interface ISetRateCurrencyProps {}
 
 export function ReadContracts(props: ISetRateCurrencyProps) {
@@ -10,24 +8,24 @@ export function ReadContracts(props: ISetRateCurrencyProps) {
     {
       key: "1",
       label: "Get Swapped Currency Rate and Decimals",
-      children: <Read></Read>,
+      children: <ReadRate></ReadRate>,
     },
-    {
-      key: "2",
-      label: "Swap Token",
-      children: <></>,
-    },
-    {
-      key: "3",
-      label: "Initialize",
-      children: <></>,
-    },
+    // {
+    //   key: "2",
+    //   label: "Swap Token",
+    //   children: <></>,
+    // },
+    // {
+    //   key: "3",
+    //   label: "Initialize",
+    //   children: <></>,
+    // },
   ]
 
   return (
     <>
       <p className="text-xl font-bold">Read contract</p>
-      <Collapse items={items} defaultActiveKey={["3"]} />
+      <Collapse items={items} defaultActiveKey={["1"]} />
     </>
   )
 }

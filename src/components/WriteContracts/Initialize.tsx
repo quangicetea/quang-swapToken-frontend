@@ -1,26 +1,18 @@
-import { Button, Form, Input } from "antd";
-import * as React from "react";
+import { Form } from "antd"
+import * as React from "react"
 import {
   ABCCOIN_ADDRESS,
   USER1_ADDRESS,
   USER2_ADDRESS,
   XYZCOIN_ADDRESS,
-} from "../../constants/address";
-import useInitialize from "../../hooks/useInitialize";
-import { InputInitialize } from "../../types";
-import FormCustom from "../FormCustom";
+} from "../../constants/address"
+import useInitialize from "../../hooks/useInitialize"
+import FormCustom from "../FormCustom"
 
 export interface ISetCurrencyAndRateProps {}
 
 export function Initialize({}: ISetCurrencyAndRateProps) {
-  const [inputData, setInputData] = React.useState<InputInitialize>({
-    mainToken: ABCCOIN_ADDRESS,
-    swappedCurrency: XYZCOIN_ADDRESS,
-    swappedRate: 150,
-    swappedCurrencyDecimals: 2,
-    _receiver: USER2_ADDRESS,
-    _sender: USER1_ADDRESS,
-  });
+  const [inputData, setInputData] = React.useState<any>({})
   const { data, error, isLoading, write } = useInitialize(
     inputData.mainToken,
     inputData.swappedCurrency,
@@ -28,16 +20,16 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
     inputData.swappedCurrencyDecimals,
     inputData._receiver,
     inputData._sender
-  );
-  const [form] = Form.useForm();
+  )
+  const [form] = Form.useForm()
   const onFinish = (values: any) => {
-    setInputData(values);
-    write?.();
-  };
+    setInputData(values)
+    write?.()
+  }
 
   const onReset = () => {
-    form.resetFields();
-  };
+    form.resetFields()
+  }
 
   const onFill = () => {
     form.setFieldsValue({
@@ -47,8 +39,8 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
       swappedCurrencyDecimals: 2,
       _receiver: USER2_ADDRESS,
       _sender: USER1_ADDRESS,
-    });
-  };
+    })
+  }
   const fieldList = [
     { id: 1, name: "mainToken", label: "Main Token" },
     { id: 2, name: "swappedCurrency", label: "Swapped Currency" },
@@ -60,7 +52,7 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
     },
     { id: 5, name: "_receiver", label: "Receiver" },
     { id: 5, name: "_sender", label: "Sender" },
-  ];
+  ]
 
   return (
     <FormCustom
@@ -77,5 +69,5 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
       isLoading={isLoading}
       buttonLabel="Initialize"
     />
-  );
+  )
 }
