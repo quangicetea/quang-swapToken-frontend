@@ -1,36 +1,36 @@
-import { Form } from 'antd';
-import * as React from 'react';
-import { XYZCOIN_ADDRESS } from '../../constants/address';
-import useReadRate from '../../hooks/useReadRate';
-import FormCustom from '../FormCustom';
+import { Form } from "antd";
+import * as React from "react";
+import { XYZCOIN_ADDRESS } from "../../constants/address";
+import useReadRate from "../../hooks/useReadRate";
+import FormCustom from "../FormCustom";
 
 export function ReadRate() {
   const [inputData, setInputData] = React.useState<any>({});
   const { data, isSuccess } = useReadRate(inputData.currency);
-  const [form] = Form.useForm();
+  const [formReadRate] = Form.useForm();
   const onFinish = (values: any) => {
     setInputData(values);
   };
   const onReset = () => {
-    form.resetFields();
+    formReadRate.resetFields();
   };
   const onFill = () => {
-    form.setFieldsValue({
-      currency: XYZCOIN_ADDRESS
+    formReadRate.setFieldsValue({
+      currency: XYZCOIN_ADDRESS,
     });
   };
-  const fieldList = [{ id: 1, name: 'currency', label: 'Currency' }];
+  const fieldList = [{ id: 1, name: "currency", label: "Currency" }];
   return (
     <FormCustom
       data={data}
       isSuccess={isSuccess}
-      form={form}
+      form={formReadRate}
       onFill={onFill}
       onFinish={onFinish}
       onReset={onReset}
       fieldList={fieldList}
       inputData={inputData}
-      buttonLabel="Initialize"
+      buttonLabel="Read Rate"
     />
   );
 }

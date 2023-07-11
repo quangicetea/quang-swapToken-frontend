@@ -1,6 +1,6 @@
-import { Button, Form, FormInstance, Input } from 'antd';
-import * as React from 'react';
-import { FieldType } from '../types';
+import { Button, Form, FormInstance, Input } from "antd";
+import * as React from "react";
+import { FieldType } from "../types";
 
 type FormProps = {
   inputData?: any;
@@ -29,21 +29,21 @@ export default function FormCustom({
   data,
   buttonLabel,
   form,
-  isSuccess
+  isSuccess,
 }: FormProps) {
   const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 16 }
+    wrapperCol: { span: 16 },
   };
 
   const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 }
+    wrapperCol: { offset: 8, span: 16 },
   };
   return (
     <Form
       {...layout}
       form={form}
-      name="control-hooks"
+      name={buttonLabel}
       onFinish={onFinish}
       style={{ maxWidth: 600 }}
     >

@@ -1,6 +1,6 @@
-import { useContractReads } from 'wagmi';
-import { TOKENSWAP_ADDRESS } from '../constants/address';
-import abi from '../contracts/abi/TokenSwap.json';
+import { useContractReads } from "wagmi";
+import { TOKENSWAP_ADDRESS } from "../constants/address";
+import abi from "../contracts/abi/TokenSwap.json";
 
 const useReadRate = (currency: `0x${string}`) => {
   const tokenSwapContract: {
@@ -8,27 +8,27 @@ const useReadRate = (currency: `0x${string}`) => {
     abi: any;
   } = {
     address: TOKENSWAP_ADDRESS,
-    abi
+    abi,
   };
   const { data, isSuccess } = useContractReads({
     contracts: [
       {
         ...tokenSwapContract,
-        functionName: 'getSwappedCurrencyDecimals',
-        args: [currency]
+        functionName: "getSwappedCurrencyDecimals",
+        args: [currency],
       },
       {
         ...tokenSwapContract,
-        functionName: 'getSwappedCurrencyRate',
-        args: [currency]
-      }
+        functionName: "getSwappedCurrencyRate",
+        args: [currency],
+      },
     ],
     enabled: Boolean(currency),
-    watch: true
+    watch: true,
   });
   return {
     data,
-    isSuccess
+    isSuccess,
   };
 };
 export default useReadRate;

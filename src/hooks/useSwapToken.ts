@@ -1,22 +1,22 @@
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
-import abi from '../contracts/abi/TokenSwap.json';
-import { TOKENSWAP_ADDRESS } from '../constants/address';
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import abi from "../contracts/abi/TokenSwap.json";
+import { TOKENSWAP_ADDRESS } from "../constants/address";
 
 const useSwapToken = (token: `0x${string}` | undefined, amountSender: number) => {
   const {
     config,
     error: prepareError,
-    isError: isPrepareError
+    isError: isPrepareError,
   } = usePrepareContractWrite({
     address: TOKENSWAP_ADDRESS,
     abi,
-    functionName: 'swap',
+    functionName: "swap",
     args: [token, amountSender],
-    enabled: Boolean(amountSender) && Boolean(token)
+    enabled: Boolean(amountSender) && Boolean(token),
   });
   const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash
+    hash: data?.hash,
   });
   return {
     data,
@@ -26,7 +26,7 @@ const useSwapToken = (token: `0x${string}` | undefined, amountSender: number) =>
     write,
     isError,
     isPrepareError,
-    prepareError
+    prepareError,
   };
 };
 export default useSwapToken;

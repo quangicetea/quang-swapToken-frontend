@@ -1,22 +1,22 @@
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
-import abi from '../contracts/abi/TokenSwap.json';
-import { TOKENSWAP_ADDRESS } from '../constants/address';
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
+import abi from "../contracts/abi/TokenSwap.json";
+import { TOKENSWAP_ADDRESS } from "../constants/address";
 
 const useSetMainToken = (addressToken: `0x${string}` | undefined) => {
   const {
     config,
     error: prepareError,
-    isError: isPrepareError
+    isError: isPrepareError,
   } = usePrepareContractWrite({
     address: TOKENSWAP_ADDRESS,
     abi,
-    functionName: 'setMainToken',
+    functionName: "setMainToken",
     args: [addressToken],
-    enabled: Boolean(addressToken)
+    enabled: Boolean(addressToken),
   });
   const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash
+    hash: data?.hash,
   });
   return {
     data,
@@ -26,7 +26,7 @@ const useSetMainToken = (addressToken: `0x${string}` | undefined) => {
     write,
     isError,
     isPrepareError,
-    prepareError
+    prepareError,
   };
 };
 export default useSetMainToken;

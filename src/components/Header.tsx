@@ -1,6 +1,6 @@
-import { Button } from 'antd';
-import { useId } from 'react';
-import { useAccount, useDisconnect, useNetwork } from 'wagmi';
+import { Button } from "antd";
+import { useId } from "react";
+import { useAccount, useDisconnect, useNetwork } from "wagmi";
 
 export function Header() {
   const { address } = useAccount();
@@ -16,7 +16,7 @@ export function Header() {
       {chain && <p className="font-bold">Connected to {chain.name}</p>}
       {chains && (
         <div className="font-bold">
-          Available chains:{' '}
+          Available chains:{" "}
           {chains.map((chain) => (
             <p key={useId()}>{chain.name}</p>
           ))}

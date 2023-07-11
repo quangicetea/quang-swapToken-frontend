@@ -1,7 +1,7 @@
-import { Header } from './Header';
-import { Intro } from './Intro';
-import { ReadContracts } from './ReadContracts/ReadContracts';
-import { WriteContracts } from './WriteContracts/WriteContracts';
+import { Header } from "./Header";
+import { Intro } from "./Intro";
+import { ReadContracts } from "./ReadContracts/ReadContracts";
+import { WriteContracts } from "./WriteContracts/WriteContracts";
 
 export function LoggedIn() {
   return (
@@ -9,8 +9,8 @@ export function LoggedIn() {
       <Header></Header>
       <Intro></Intro>
       <div className="flex flex-col gap-3">
-        <ReadContracts></ReadContracts>
-        <WriteContracts></WriteContracts>
+        <ReadContracts/>
+        <WriteContracts/>
       </div>
     </div>
   );
