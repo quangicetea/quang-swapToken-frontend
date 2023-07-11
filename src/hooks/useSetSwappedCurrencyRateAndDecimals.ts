@@ -1,6 +1,7 @@
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import abi from "../contracts/abi/TokenSwap.json";
 import { TOKENSWAP_ADDRESS } from "../constants/address";
+import { toast } from "react-toastify";
 
 const useSetSwappedCurrencyRateAndDecimals = (
   currencyAddress: `0x${string}` | undefined,
@@ -17,7 +18,10 @@ const useSetSwappedCurrencyRateAndDecimals = (
     functionName: "setSwappedCurrencyRateAndDecimals",
     args: [currencyAddress, rate, decimals],
     // enabled: Boolean(decimals) && Boolean(currencyAddress) && Boolean(rate),
-    enabled: true,
+    enabled: Boolean(decimals) && Boolean(currencyAddress) && Boolean(rate),
+    onError(err) {
+      toast.error(err.message);
+    },
   });
   const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({

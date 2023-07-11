@@ -1,6 +1,7 @@
 import { useContractReads } from "wagmi";
 import { TOKENSWAP_ADDRESS } from "../constants/address";
 import abi from "../contracts/abi/TokenSwap.json";
+import { toast } from "react-toastify";
 
 const useReadRate = (currency: `0x${string}`) => {
   const tokenSwapContract: {
@@ -10,7 +11,7 @@ const useReadRate = (currency: `0x${string}`) => {
     address: TOKENSWAP_ADDRESS,
     abi,
   };
-  const { data, isSuccess } = useContractReads({
+  const { data, isSuccess, isLoading, isError, error } = useContractReads({
     contracts: [
       {
         ...tokenSwapContract,
@@ -25,10 +26,18 @@ const useReadRate = (currency: `0x${string}`) => {
     ],
     enabled: Boolean(currency),
     watch: true,
+    allowFailure: false,
+    onSuccess() {},
+    onError(error) {
+      toast.error(error.message);
+    },
   });
   return {
     data,
     isSuccess,
+    isLoading,
+    isError,
+    error,
   };
 };
 export default useReadRate;

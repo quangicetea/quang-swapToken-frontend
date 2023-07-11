@@ -7,8 +7,10 @@ export function NotLoggedIn() {
     connector: new InjectedConnector(),
   });
   return (
-    <Button className="font-bold text-white bg-red-400" onClick={() => connect()}>
-      Connect Wallet
-    </Button>
+    <div className="flex justify-center items-center h-screen">
+      <Button className="font-bold text-white bg-red-400" onClick={() => connect()}>
+        Connect Wallet
+      </Button>
+    </div>
   );
 }

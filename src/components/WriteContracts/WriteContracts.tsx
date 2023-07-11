@@ -9,24 +9,24 @@ export function WriteContracts() {
     {
       key: "1",
       label: "Set Swapped Currency Rate and Decimals",
-      children: <SetCurrencyAndRate/>,
+      children: <SetCurrencyAndRate />,
     },
     {
       key: "2",
       label: "Swap Token",
-      children: <SwapToken/>,
+      children: <SwapToken />,
     },
     {
       key: "3",
       label: "Initialize",
-      children: <Initialize/>,
+      children: <Initialize />,
     },
   ];
 
   return (
     <>
       <p className="text-xl font-bold">Write contract</p>
-      <Collapse items={items} defaultActiveKey={["3"]} />
+      <Collapse items={items} />
     </>
   );
 }

@@ -5,7 +5,7 @@ import { FieldType } from "../types";
 type FormProps = {
   inputData?: any;
   setInputData?: React.Dispatch<React.SetStateAction<any>>;
-  data?: any;
+  data?: any[] | any;
   error?: Error | null;
   isLoading?: boolean;
   isSuccess?: boolean;
@@ -29,7 +29,6 @@ export default function FormCustom({
   data,
   buttonLabel,
   form,
-  isSuccess,
 }: FormProps) {
   const layout = {
     labelCol: { span: 8 },
@@ -45,14 +44,15 @@ export default function FormCustom({
       form={form}
       name={buttonLabel}
       onFinish={onFinish}
-      style={{ maxWidth: 600 }}
+      style={{ maxWidth: 600, minWidth: 500 }}
     >
       {fieldList?.map((filed) => (
         <Form.Item
-          key={React.useId()}
+          key={filed.name}
           name={filed.name}
           label={filed.label}
           rules={[{ required: true }]}
+          style={{ minWidth: 500 }}
         >
           <Input />
         </Form.Item>
@@ -61,31 +61,21 @@ export default function FormCustom({
       <Form.Item
         noStyle
         shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
+        style={{ minWidth: 500 }}
       ></Form.Item>
       <Form.Item {...tailLayout}>
-        <Button className="bg-blue-400" htmlType="submit">
+        <Button className="bg-blue-600 mx-1 text-white" htmlType="submit">
           {buttonLabel}
         </Button>
         <Button htmlType="button" onClick={onReset}>
           Reset
         </Button>
-        <Button type="link" htmlType="button" onClick={onFill}>
+        <Button type="link" className="" htmlType="button" onClick={onFill}>
           Fill form
         </Button>
       </Form.Item>
       {data?.hash && (
         <a href={`https://goerli.etherscan.io/tx/${data?.hash}`}>View your transaction</a>
-      )}
-
-      {data && isSuccess && (
-        <>
-          <p>
-            Successfully! Decimal and Rate is:
-            {data.map((x: any) => (
-              <p key={React.useId()}>{Number(x.result)}</p>
-            ))}
-          </p>
-        </>
       )}
     </Form>
   );

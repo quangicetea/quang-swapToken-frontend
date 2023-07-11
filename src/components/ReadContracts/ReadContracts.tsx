@@ -7,14 +7,14 @@ export function ReadContracts() {
     {
       key: "1",
       label: "Get Swapped Currency Rate and Decimals",
-      children: <ReadRate/>,
+      children: <ReadRate />,
     },
   ];
 
   return (
     <>
       <p className="text-xl font-bold">Read contract</p>
-      <Collapse items={items} defaultActiveKey={["1"]} />
+      <Collapse items={items} />
     </>
   );
 }
