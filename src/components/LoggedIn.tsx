@@ -1,11 +1,9 @@
-import { Header } from "./Header"
-import { Intro } from "./Intro"
-import { ReadContracts } from "./ReadContracts/ReadContracts"
-import { WriteContracts } from "./WriteContracts/WriteContracts"
+import { Header } from './Header';
+import { Intro } from './Intro';
+import { ReadContracts } from './ReadContracts/ReadContracts';
+import { WriteContracts } from './WriteContracts/WriteContracts';
 
-export interface ILoggedInProps {}
-
-export function LoggedIn(props: ILoggedInProps) {
+export function LoggedIn() {
   return (
     <div className="m-7">
       <Header></Header>
@@ -15,5 +13,5 @@ export function LoggedIn(props: ILoggedInProps) {
         <WriteContracts></WriteContracts>
       </div>
     </div>
-  )
+  );
 }

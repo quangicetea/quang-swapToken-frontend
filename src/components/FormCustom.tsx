@@ -1,36 +1,27 @@
-import { Button, Form, FormInstance, Input } from "antd"
-import * as React from "react"
-import { FieldType } from "../types"
+import { Button, Form, FormInstance, Input } from 'antd';
+import * as React from 'react';
+import { FieldType } from '../types';
 
 type FormProps = {
-  inputData?: any
-  setInputData?: React.Dispatch<React.SetStateAction<any>>
-  data?: any
-  error?: Error | null
-  isLoading?: boolean
-  isSuccess?: boolean
-  write?: any
-  isError?: boolean
-  isPrepareError?: boolean
-  prepareError?: boolean
-  fieldList?: FieldType[]
-  onFinish?: any
-  onFill?: any
-  onReset?: any
-  buttonLabel: string
-  form?: FormInstance<any>
-}
+  inputData?: any;
+  setInputData?: React.Dispatch<React.SetStateAction<any>>;
+  data?: any;
+  error?: Error | null;
+  isLoading?: boolean;
+  isSuccess?: boolean;
+  write?: any;
+  isError?: boolean;
+  isPrepareError?: boolean;
+  prepareError?: boolean;
+  fieldList?: FieldType[];
+  onFinish?: any;
+  onFill?: any;
+  onReset?: any;
+  buttonLabel: string;
+  form?: FormInstance<any>;
+};
 
 export default function FormCustom({
-  inputData,
-  setInputData,
-  error,
-  isLoading,
-  isSuccess,
-  write,
-  isError,
-  isPrepareError,
-  prepareError,
   onFill,
   onFinish,
   onReset,
@@ -38,15 +29,16 @@ export default function FormCustom({
   data,
   buttonLabel,
   form,
+  isSuccess
 }: FormProps) {
   const layout = {
     labelCol: { span: 8 },
-    wrapperCol: { span: 16 },
-  }
+    wrapperCol: { span: 16 }
+  };
 
   const tailLayout = {
-    wrapperCol: { offset: 8, span: 16 },
-  }
+    wrapperCol: { offset: 8, span: 16 }
+  };
   return (
     <Form
       {...layout}
@@ -57,6 +49,7 @@ export default function FormCustom({
     >
       {fieldList?.map((filed) => (
         <Form.Item
+          key={React.useId()}
           name={filed.name}
           label={filed.label}
           rules={[{ required: true }]}
@@ -67,9 +60,7 @@ export default function FormCustom({
 
       <Form.Item
         noStyle
-        shouldUpdate={(prevValues, currentValues) =>
-          prevValues.gender !== currentValues.gender
-        }
+        shouldUpdate={(prevValues, currentValues) => prevValues.gender !== currentValues.gender}
       ></Form.Item>
       <Form.Item {...tailLayout}>
         <Button className="bg-blue-400" htmlType="submit">
@@ -83,9 +74,7 @@ export default function FormCustom({
         </Button>
       </Form.Item>
       {data?.hash && (
-        <a href={`https://goerli.etherscan.io/tx/${data?.hash}`}>
-          View your transaction
-        </a>
+        <a href={`https://goerli.etherscan.io/tx/${data?.hash}`}>View your transaction</a>
       )}
 
       {data && isSuccess && (
@@ -93,11 +82,11 @@ export default function FormCustom({
           <p>
             Successfully! Decimal and Rate is:
             {data.map((x: any) => (
-              <p>{Number(x.result)}</p>
+              <p key={React.useId()}>{Number(x.result)}</p>
             ))}
           </p>
         </>
       )}
     </Form>
-  )
+  );
 }

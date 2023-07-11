@@ -1,18 +1,14 @@
-import { Button } from "antd"
-import { useConnect } from "wagmi"
-import { InjectedConnector } from "wagmi/connectors/injected"
-export interface INotLoggedInProps {}
+import { Button } from 'antd';
+import { useConnect } from 'wagmi';
+import { InjectedConnector } from 'wagmi/connectors/injected';
 
-export function NotLoggedIn(props: INotLoggedInProps) {
+export function NotLoggedIn() {
   const { connect } = useConnect({
-    connector: new InjectedConnector(),
-  })
+    connector: new InjectedConnector()
+  });
   return (
-    <Button
-      className="bg-red-400 text-white font-bold"
-      onClick={() => connect()}
-    >
+    <Button className="font-bold text-white bg-red-400" onClick={() => connect()}>
       Connect Wallet
     </Button>
-  )
+  );
 }

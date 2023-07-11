@@ -1,36 +1,34 @@
-import { Form } from "antd"
-import * as React from "react"
-import { XYZCOIN_ADDRESS } from "../../constants/address"
-import useSetSwappedCurrencyRateAndDecimals from "../../hooks/useSetSwappedCurrencyRateAndDecimals"
-import FormCustom from "../FormCustom"
+import { Form } from 'antd';
+import * as React from 'react';
+import { XYZCOIN_ADDRESS } from '../../constants/address';
+import useSetSwappedCurrencyRateAndDecimals from '../../hooks/useSetSwappedCurrencyRateAndDecimals';
+import FormCustom from '../FormCustom';
 
-export interface ISetCurrencyAndRateProps {}
-
-export function SetCurrencyAndRate({}: ISetCurrencyAndRateProps) {
-  const [inputData, setInputData] = React.useState<any>({})
-  const { data, write, isSuccess } = useSetSwappedCurrencyRateAndDecimals(
+export function SetCurrencyAndRate() {
+  const [inputData, setInputData] = React.useState<any>({});
+  const { data, write } = useSetSwappedCurrencyRateAndDecimals(
     inputData.currency,
     inputData.rate,
     inputData.decimals
-  )
-  const [form] = Form.useForm()
+  );
+  const [form] = Form.useForm();
   const onFinish = (values: any) => {
-    setInputData(values)
-    write?.()
-  }
+    setInputData(values);
+    write?.();
+  };
 
   const onReset = () => {
-    form.resetFields()
-  }
+    form.resetFields();
+  };
 
   const onFill = () => {
-    form.setFieldsValue({ currency: XYZCOIN_ADDRESS, rate: 123, decimals: 2 })
-  }
+    form.setFieldsValue({ currency: XYZCOIN_ADDRESS, rate: 123, decimals: 2 });
+  };
   const fieldList = [
-    { id: 1, name: "currency", label: "Currency" },
-    { id: 2, name: "rate", label: "Rate" },
-    { id: 3, name: "decimals", label: "Decimals" },
-  ]
+    { id: 1, name: 'currency', label: 'Currency' },
+    { id: 2, name: 'rate', label: 'Rate' },
+    { id: 3, name: 'decimals', label: 'Decimals' }
+  ];
   return (
     <FormCustom
       form={form}
@@ -44,5 +42,5 @@ export function SetCurrencyAndRate({}: ISetCurrencyAndRateProps) {
       setInputData={setInputData}
       buttonLabel="Set Currency and Rate"
     />
-  )
+  );
 }

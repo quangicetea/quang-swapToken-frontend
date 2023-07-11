@@ -137,18 +137,14 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "_currency", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_currency", "type": "address" }],
     "name": "getSwappedCurrencyDecimals",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "_currency", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_currency", "type": "address" }],
     "name": "getSwappedCurrencyRate",
     "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
@@ -204,9 +200,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "_token", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "_token", "type": "address" }],
     "name": "setMainToken",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -244,9 +238,7 @@
     "type": "function"
   },
   {
-    "inputs": [
-      { "internalType": "address", "name": "newOwner", "type": "address" }
-    ],
+    "inputs": [{ "internalType": "address", "name": "newOwner", "type": "address" }],
     "name": "transferOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",

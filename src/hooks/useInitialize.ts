@@ -1,10 +1,6 @@
-import {
-  useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
-} from "wagmi"
-import abi from "../contracts/abi/TokenSwap.json"
-import { TOKENSWAP_ADDRESS } from "../constants/address"
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
+import abi from '../contracts/abi/TokenSwap.json';
+import { TOKENSWAP_ADDRESS } from '../constants/address';
 
 const useInitialize = (
   mainToken: `0x${string}`,
@@ -17,31 +13,24 @@ const useInitialize = (
   const {
     config,
     error: prepareError,
-    isError: isPrepareError,
+    isError: isPrepareError
   } = usePrepareContractWrite({
     address: TOKENSWAP_ADDRESS,
     abi,
-    functionName: "initialize",
-    args: [
-      mainToken,
-      swappedCurrency,
-      swappedRate,
-      swappedCurrencyDecimals,
-      receiver,
-      sender,
-    ],
+    functionName: 'initialize',
+    args: [mainToken, swappedCurrency, swappedRate, swappedCurrencyDecimals, receiver, sender],
     enabled:
       Boolean(mainToken) &&
       Boolean(swappedCurrency) &&
       Boolean(swappedRate) &&
       Boolean(swappedCurrencyDecimals) &&
       Boolean(receiver) &&
-      Boolean(sender),
-  })
-  const { data, error, isError, write } = useContractWrite(config)
+      Boolean(sender)
+  });
+  const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  })
+    hash: data?.hash
+  });
   return {
     data,
     error,
@@ -50,7 +39,7 @@ const useInitialize = (
     write,
     isError,
     isPrepareError,
-    prepareError,
-  }
-}
-export default useInitialize
+    prepareError
+  };
+};
+export default useInitialize;

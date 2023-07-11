@@ -1,18 +1,16 @@
-import { Form } from "antd"
-import * as React from "react"
+import { Form } from 'antd';
+import * as React from 'react';
 import {
   ABCCOIN_ADDRESS,
   USER1_ADDRESS,
   USER2_ADDRESS,
-  XYZCOIN_ADDRESS,
-} from "../../constants/address"
-import useInitialize from "../../hooks/useInitialize"
-import FormCustom from "../FormCustom"
+  XYZCOIN_ADDRESS
+} from '../../constants/address';
+import useInitialize from '../../hooks/useInitialize';
+import FormCustom from '../FormCustom';
 
-export interface ISetCurrencyAndRateProps {}
-
-export function Initialize({}: ISetCurrencyAndRateProps) {
-  const [inputData, setInputData] = React.useState<any>({})
+export function Initialize() {
+  const [inputData, setInputData] = React.useState<any>({});
   const { data, error, isLoading, write } = useInitialize(
     inputData.mainToken,
     inputData.swappedCurrency,
@@ -20,16 +18,16 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
     inputData.swappedCurrencyDecimals,
     inputData._receiver,
     inputData._sender
-  )
-  const [form] = Form.useForm()
+  );
+  const [form] = Form.useForm();
   const onFinish = (values: any) => {
-    setInputData(values)
-    write?.()
-  }
+    setInputData(values);
+    write?.();
+  };
 
   const onReset = () => {
-    form.resetFields()
-  }
+    form.resetFields();
+  };
 
   const onFill = () => {
     form.setFieldsValue({
@@ -38,21 +36,21 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
       swappedRate: 150,
       swappedCurrencyDecimals: 2,
       _receiver: USER2_ADDRESS,
-      _sender: USER1_ADDRESS,
-    })
-  }
+      _sender: USER1_ADDRESS
+    });
+  };
   const fieldList = [
-    { id: 1, name: "mainToken", label: "Main Token" },
-    { id: 2, name: "swappedCurrency", label: "Swapped Currency" },
-    { id: 3, name: "swappedRate", label: "Rate" },
+    { id: 1, name: 'mainToken', label: 'Main Token' },
+    { id: 2, name: 'swappedCurrency', label: 'Swapped Currency' },
+    { id: 3, name: 'swappedRate', label: 'Rate' },
     {
       id: 4,
-      name: "swappedCurrencyDecimals",
-      label: "Swapped Currency Decimals",
+      name: 'swappedCurrencyDecimals',
+      label: 'Swapped Currency Decimals'
     },
-    { id: 5, name: "_receiver", label: "Receiver" },
-    { id: 5, name: "_sender", label: "Sender" },
-  ]
+    { id: 5, name: '_receiver', label: 'Receiver' },
+    { id: 5, name: '_sender', label: 'Sender' }
+  ];
 
   return (
     <FormCustom
@@ -69,5 +67,5 @@ export function Initialize({}: ISetCurrencyAndRateProps) {
       isLoading={isLoading}
       buttonLabel="Initialize"
     />
-  )
+  );
 }

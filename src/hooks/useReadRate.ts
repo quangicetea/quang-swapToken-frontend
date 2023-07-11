@@ -1,45 +1,34 @@
-import {
-  useContractReads,
-  useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
-} from "wagmi"
-import abi from "../contracts/abi/TokenSwap.json"
-import { TOKENSWAP_ADDRESS } from "../constants/address"
+import { useContractReads } from 'wagmi';
+import { TOKENSWAP_ADDRESS } from '../constants/address';
+import abi from '../contracts/abi/TokenSwap.json';
 
 const useReadRate = (currency: `0x${string}`) => {
   const tokenSwapContract: {
-    address: any
-    abi: any
+    address: any;
+    abi: any;
   } = {
     address: TOKENSWAP_ADDRESS,
-    abi,
-  }
-  const { data, isSuccess, isLoading } = useContractReads({
+    abi
+  };
+  const { data, isSuccess } = useContractReads({
     contracts: [
       {
         ...tokenSwapContract,
-        functionName: "getSwappedCurrencyDecimals",
-        args: [currency],
+        functionName: 'getSwappedCurrencyDecimals',
+        args: [currency]
       },
       {
         ...tokenSwapContract,
-        functionName: "getSwappedCurrencyRate",
-        args: [currency],
-      },
+        functionName: 'getSwappedCurrencyRate',
+        args: [currency]
+      }
     ],
     enabled: Boolean(currency),
-    watch: true,
-    onSuccess(data) {
-      console.log("Success", data)
-    },
-    onError(error) {
-      console.log("Error", error)
-    },
-  })
+    watch: true
+  });
   return {
     data,
-    isSuccess,
-  }
-}
-export default useReadRate
+    isSuccess
+  };
+};
+export default useReadRate;

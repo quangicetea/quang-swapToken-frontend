@@ -1,10 +1,6 @@
-import {
-  useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
-} from "wagmi"
-import abi from "../contracts/abi/TokenSwap.json"
-import { TOKENSWAP_ADDRESS } from "../constants/address"
+import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi';
+import abi from '../contracts/abi/TokenSwap.json';
+import { TOKENSWAP_ADDRESS } from '../constants/address';
 
 const useSetSwappedCurrencyRateAndDecimals = (
   currencyAddress: `0x${string}` | undefined,
@@ -14,19 +10,19 @@ const useSetSwappedCurrencyRateAndDecimals = (
   const {
     config,
     error: prepareError,
-    isError: isPrepareError,
+    isError: isPrepareError
   } = usePrepareContractWrite({
     address: TOKENSWAP_ADDRESS,
     abi,
-    functionName: "setSwappedCurrencyRateAndDecimals",
+    functionName: 'setSwappedCurrencyRateAndDecimals',
     args: [currencyAddress, rate, decimals],
     // enabled: Boolean(decimals) && Boolean(currencyAddress) && Boolean(rate),
-    enabled: true,
-  })
-  const { data, error, isError, write } = useContractWrite(config)
+    enabled: true
+  });
+  const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash,
-  })
+    hash: data?.hash
+  });
   return {
     data,
     error,
@@ -35,7 +31,7 @@ const useSetSwappedCurrencyRateAndDecimals = (
     write,
     isError,
     isPrepareError,
-    prepareError,
-  }
-}
-export default useSetSwappedCurrencyRateAndDecimals
+    prepareError
+  };
+};
+export default useSetSwappedCurrencyRateAndDecimals;
