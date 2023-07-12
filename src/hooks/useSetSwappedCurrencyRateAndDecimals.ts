@@ -17,10 +17,9 @@ const useSetSwappedCurrencyRateAndDecimals = (
     abi,
     functionName: "setSwappedCurrencyRateAndDecimals",
     args: [currencyAddress, rate, decimals],
-    // enabled: Boolean(decimals) && Boolean(currencyAddress) && Boolean(rate),
     enabled: Boolean(decimals) && Boolean(currencyAddress) && Boolean(rate),
     onError(err) {
-      toast.error(err.message);
+      toast.error(err.name);
     },
   });
   const { data, error, isError, write } = useContractWrite(config);

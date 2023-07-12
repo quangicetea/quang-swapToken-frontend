@@ -1,21 +1,21 @@
 import { Form } from "antd";
 import * as React from "react";
 import { XYZCOIN_ADDRESS } from "../../constants/address";
-import useReadRate from "../../hooks/useReadRate";
+import useReadDecimals from "../../hooks/useReadDecimals";
 import FormCustomRead from "../FormCustomRead";
 
-export function ReadRate() {
+export function ReadDecimals() {
   const [inputData, setInputData] = React.useState<any>({});
-  const { data, isSuccess } = useReadRate(inputData.currency);
-  const [formReadRate] = Form.useForm();
+  const { data, isSuccess } = useReadDecimals(inputData.currency);
+  const [formReadDecimals] = Form.useForm();
   const onFinish = (values: any) => {
     setInputData(values);
   };
   const onReset = () => {
-    formReadRate.resetFields();
+    formReadDecimals.resetFields();
   };
   const onFill = () => {
-    formReadRate.setFieldsValue({
+    formReadDecimals.setFieldsValue({
       currency: XYZCOIN_ADDRESS,
     });
   };
@@ -24,13 +24,13 @@ export function ReadRate() {
     <FormCustomRead
       data={data}
       isSuccess={isSuccess}
-      form={formReadRate}
+      form={formReadDecimals}
       onFill={onFill}
       onFinish={onFinish}
       onReset={onReset}
       fieldList={fieldList}
       inputData={inputData}
-      buttonLabel="Read Rate"
+      buttonLabel="Read Decimals"
     />
   );
 }

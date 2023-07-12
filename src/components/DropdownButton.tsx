@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 
 const DropdownButton = () => {
   const [show, setShow] = React.useState<boolean>(false);
+  const [isValidChain, setIsValidChain] = React.useState<boolean>(true);
+
   const { chains, chain } = useNetwork();
   const { switchNetworkAsync, isSuccess } = useSwitchNetwork();
   React.useEffect(() => {
@@ -37,13 +39,30 @@ const DropdownButton = () => {
     try {
       switchNetworkAsync && (await switchNetworkAsync(newWorkId));
     } catch {
-      console.log("error");
+      toast.error("Switch network fail!");
     }
   };
-  console.log(chains);
   if (isSuccess) {
     toast.success(isSuccess);
   }
+  const validchains = [
+    {
+      id: 1,
+      network: "homestead",
+      name: "Ethereum",
+    },
+    {
+      id: 5,
+      network: "goerli",
+      name: "Goerli",
+    },
+  ];
+  React.useEffect(() => {
+    const isValidChain = validchains.some((validchain) => validchain.name === chain?.name);
+    if (!isValidChain) {
+      setIsValidChain(false);
+    }
+  }, [chain]);
   return (
     <div>
       <Button
@@ -54,11 +73,12 @@ const DropdownButton = () => {
       </Button>
       {show && (
         <div className="bg-white divide-y divide-gray-100 text-center rounded-lg shadow dark:bg-gray-700">
-          <div
-            className="
-    "
-          >
-            <button onClick={showModal}>{chain?.name}</button>
+          <div>
+            {isValidChain ? (
+              <button onClick={showModal}>{chain?.name}</button>
+            ) : (
+              <button onClick={showModal}>Not supported chain</button>
+            )}
           </div>
           <div className="">
             <button onClick={handleClickDisconnect}>Disconnect</button>
@@ -70,11 +90,12 @@ const DropdownButton = () => {
         <div className="flex justify-center flex-row gap-3">
           {chains.map((x) => (
             <Button
+              disabled={chain?.name == x.name || false}
               onClick={() => {
                 handleSwitchNetwork(x.id);
               }}
             >
-              {x.network}
+              {x.name}
             </Button>
           ))}
         </div>

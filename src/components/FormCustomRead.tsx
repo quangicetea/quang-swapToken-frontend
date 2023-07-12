@@ -21,7 +21,7 @@ type FormProps = {
   form?: FormInstance<any>;
 };
 
-export default function FormCustom({
+export default function FormCustomRead({
   onFill,
   onFinish,
   isLoading,
@@ -75,19 +75,7 @@ export default function FormCustom({
           Fill form
         </Button>
       </Form.Item>
-      {data && data?.hash && (
-        <div className="flex w-full justify-center">
-          <a
-            className="p-2 border rounded-lg bg-red-400 text-white"
-            target="_blank"
-            href={`https://goerli.etherscan.io/tx/${data?.hash}`}
-          >
-            View your transaction
-          </a>
-        </div>
-      )}
-      {/* {data && Number(data)&& <p>Result: {Number(data)}</p>} */}
-      {/* {data && <p>Result: {data}</p>} */}
+      {data && Number(data) && <p>Result: {Number(data)}</p>}
     </Form>
   );
 }

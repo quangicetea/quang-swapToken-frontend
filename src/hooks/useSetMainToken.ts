@@ -1,6 +1,7 @@
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import abi from "../contracts/abi/TokenSwap.json";
 import { TOKENSWAP_ADDRESS } from "../constants/address";
+import { toast } from "react-toastify";
 
 const useSetMainToken = (addressToken: `0x${string}` | undefined) => {
   const {
@@ -13,6 +14,9 @@ const useSetMainToken = (addressToken: `0x${string}` | undefined) => {
     functionName: "setMainToken",
     args: [addressToken],
     enabled: Boolean(addressToken),
+    onError(err) {
+      toast.error(err.name);
+    },
   });
   const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({
