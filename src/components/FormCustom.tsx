@@ -30,6 +30,7 @@ export default function FormCustom({
   data,
   buttonLabel,
   form,
+  write
 }: FormProps) {
   const layout = {
     labelCol: { span: 8 },
@@ -65,7 +66,7 @@ export default function FormCustom({
         style={{ minWidth: 500 }}
       ></Form.Item>
       <Form.Item {...tailLayout}>
-        <Button className="bg-blue-600 mx-1 text-white" htmlType="submit" disabled={isLoading}>
+        <Button onClick={()=>write?.()} className="bg-blue-600 mx-1 text-white" htmlType="submit" disabled={isLoading}>
           {buttonLabel}
         </Button>
         <Button htmlType="button" onClick={onReset}>
@@ -86,8 +87,6 @@ export default function FormCustom({
           </a>
         </div>
       )}
-      {/* {data && Number(data)&& <p>Result: {Number(data)}</p>} */}
-      {/* {data && <p>Result: {data}</p>} */}
     </Form>
   );
 }

@@ -13,9 +13,7 @@ const useReadRate = (currency: `0x${string}`) => {
     onError(error) {
       toast.error(error.name);
     },
-    onSuccess(data) {
-      console.log("Success", data);
-    },
+
   });
   return {
     data,
