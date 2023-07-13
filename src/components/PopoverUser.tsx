@@ -1,4 +1,4 @@
-import { Button, Popover, Modal } from "antd";
+import { Button, Popover, Modal, Badge } from "antd";
 import React from "react";
 import { toast } from "react-toastify";
 import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from "wagmi";
@@ -47,23 +47,31 @@ const PopoverUser: React.FC = () => {
     <div className="font-bold text-center bg-white rounded-lg ">
       <div>
         {isValidChain ? (
-          <button onClick={showModal}>Network: {chain?.name}</button>
+          <button onClick={showModal}>
+            {" "}
+            <Badge status="success" /> Network: {chain?.name}
+          </button>
         ) : (
-          <button onClick={showModal}>Not supported chain</button>
+          <button onClick={showModal}>
+            <Badge status="warning" /> Not supported chain
+          </button>
         )}
       </div>
       <div className="">
-        <button onClick={handleClickDisconnect}>Disconnect</button>
+        <button className="hover:text-red-500 border rounded-xl p-2 bg-red-300" onClick={handleClickDisconnect}>Disconnect</button>
       </div>
       {abcCoin && xyzCoin && (
-        <div className="flex gap-2 ">
-          <div>
-            <p>ABC COIN</p>
-            <p>{Number(abcCoin)}</p>
-          </div>
-          <div className="">
-            <p>XYZ COIN</p>
-            <p>{Number(xyzCoin)}</p>
+        <div className="">
+          <p>BALANCES</p>
+          <div className="flex gap-2 ">
+            <div className="">
+              <p>ABC COIN</p>
+              <p>{Number(abcCoin)}</p>
+            </div>
+            <div className="">
+              <p>XYZ COIN</p>
+              <p>{Number(xyzCoin)}</p>
+            </div>
           </div>
         </div>
       )}
