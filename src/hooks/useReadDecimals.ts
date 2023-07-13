@@ -13,7 +13,6 @@ const useReadDecimals = (currency: `0x${string}`) => {
     onError(error) {
       toast.error(error.name);
     },
-
   });
   return {
     data,

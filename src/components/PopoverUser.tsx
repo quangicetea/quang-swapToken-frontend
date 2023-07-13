@@ -5,6 +5,11 @@ import { useAccount, useDisconnect, useNetwork, useSwitchNetwork } from "wagmi";
 import { displayWalletAddress } from "../utils";
 import { UserOutlined } from "@ant-design/icons";
 import { VALIDCHANINS } from "../constants/networks";
+import { ABCCOIN_ADDRESS, USER1_ADDRESS, XYZCOIN_ADDRESS } from "../constants/address";
+import abcabi from "../contracts/abi/ABC.json";
+import xyzabi from "../contracts/abi/XYZ.json";
+
+import useReadBalance from "../hooks/useReadBalance";
 const buttonWidth = 70;
 const PopoverUser: React.FC = () => {
   const [isValidChain, setIsValidChain] = React.useState<boolean>(true);
@@ -36,8 +41,12 @@ const PopoverUser: React.FC = () => {
   if (isSuccess) {
     toast.success(isSuccess);
   }
+  const { data: abcCoin } = useReadBalance(ABCCOIN_ADDRESS, abcabi, USER1_ADDRESS);
+  const { data: xyzCoin } = useReadBalance(XYZCOIN_ADDRESS, xyzabi, USER1_ADDRESS);
+
+  console.log(abcCoin);
   const content = (
-    <div className="bg-white divide-y divide-gray-100 text-center rounded-lg shadow dark:bg-gray-700">
+    <div className="font-bold text-center bg-white rounded-lg ">
       <div>
         {isValidChain ? (
           <button onClick={showModal}>Network: {chain?.name}</button>
@@ -48,6 +57,13 @@ const PopoverUser: React.FC = () => {
       <div className="">
         <button onClick={handleClickDisconnect}>Disconnect</button>
       </div>
+      {abcCoin && (
+        <>
+          <p>ABC Coin: {Number(abcCoin)}</p>
+          <p>XYZ Coin: {Number(xyzCoin)}</p>
+        </>
+      )}
+
       <p>Address: {displayWalletAddress(address)}</p>
     </div>
   );
@@ -70,7 +86,7 @@ const PopoverUser: React.FC = () => {
     <div>
       <div style={{ marginLeft: buttonWidth, clear: "both", whiteSpace: "nowrap" }}>
         <Popover placement="bottom" title="User" content={content} trigger="click">
-          <Button className="w-10 h-10 rounded-full flex justify-center items-center border-black">
+          <Button className="flex items-center justify-center w-10 h-10 border-black rounded-full">
             <UserOutlined />
           </Button>
         </Popover>
@@ -82,7 +98,7 @@ const PopoverUser: React.FC = () => {
         onCancel={handleCancel}
         okButtonProps={{ className: "text-black border border-gray-500" }}
       >
-        <div className="flex justify-center flex-row gap-3">
+        <div className="flex flex-row justify-center gap-3">
           {chains.map((x) => (
             <Button
               key={x.id}

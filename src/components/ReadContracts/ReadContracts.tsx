@@ -1,26 +1,18 @@
-import type { CollapseProps } from "antd";
-import { Collapse } from "antd";
-import { ReadRate } from "./ReadRate";
-import { ReadDecimals } from "./ReadDecimals";
+import { XYZCOIN_ADDRESS } from "../../constants/address";
+import useReadDecimals from "../../hooks/useReadDecimals";
+import useReadRate from "../../hooks/useReadRate";
 
 export function ReadContracts() {
-  const items: CollapseProps["items"] = [
-    {
-      key: "1",
-      label: "Get Swapped Currency Rate",
-      children: <ReadRate />,
-    },
-    {
-      key: "2",
-      label: "Get Swapped Currency Decimals",
-      children: <ReadDecimals />,
-    },
-  ];
-
+  const { data: rate } = useReadRate(XYZCOIN_ADDRESS);
+  const { data: decimals } = useReadDecimals(XYZCOIN_ADDRESS);
   return (
     <>
       <p className="text-xl font-bold">Read contract</p>
-      <Collapse className="min-w-[600px]" items={items} />
+      {rate && decimals && (
+        <p>
+          Rate between ABC Coin and XYZ Coin is: {Number(rate) / Math.pow(10, Number(decimals))}
+        </p>
+      )}
     </>
   );
 }

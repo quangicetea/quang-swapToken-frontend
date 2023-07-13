@@ -6,8 +6,8 @@ export function LoggedIn() {
   return (
     <div className="">
       <Header></Header>
-      <div className="flex justify-center items-center">
-        <div className="flex flex-col gap-3 my-5 justify-center items-center">
+      <div className="flex items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-3 my-5">
           <ReadContracts />
           <WriteContracts />
         </div>
