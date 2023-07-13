@@ -6,10 +6,8 @@ import { displayWalletAddress } from "../utils";
 import { UserOutlined } from "@ant-design/icons";
 import { VALIDCHANINS } from "../constants/networks";
 import { ABCCOIN_ADDRESS, USER1_ADDRESS, XYZCOIN_ADDRESS } from "../constants/address";
-import abcabi from "../contracts/abi/ABC.json";
-import xyzabi from "../contracts/abi/XYZ.json";
 
-import useReadBalance from "../hooks/useReadBalance";
+import useTokenBalance from "../hooks/useTokenBalance";
 const buttonWidth = 70;
 const PopoverUser: React.FC = () => {
   const [isValidChain, setIsValidChain] = React.useState<boolean>(true);
@@ -41,8 +39,9 @@ const PopoverUser: React.FC = () => {
   if (isSuccess) {
     toast.success(isSuccess);
   }
-  const { data: abcCoin } = useReadBalance(ABCCOIN_ADDRESS, abcabi, USER1_ADDRESS);
-  const { data: xyzCoin } = useReadBalance(XYZCOIN_ADDRESS, xyzabi, USER1_ADDRESS);
+  const { userBalance: xyzCoin } = useTokenBalance(XYZCOIN_ADDRESS, USER1_ADDRESS, chain?.id);
+  const { userBalance: abcCoin } = useTokenBalance(ABCCOIN_ADDRESS, USER1_ADDRESS, chain?.id);
+
   const content = (
     <div className="font-bold text-center bg-white rounded-lg ">
       <div>
