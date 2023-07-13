@@ -43,8 +43,6 @@ const PopoverUser: React.FC = () => {
   }
   const { data: abcCoin } = useReadBalance(ABCCOIN_ADDRESS, abcabi, USER1_ADDRESS);
   const { data: xyzCoin } = useReadBalance(XYZCOIN_ADDRESS, xyzabi, USER1_ADDRESS);
-
-  console.log(abcCoin);
   const content = (
     <div className="font-bold text-center bg-white rounded-lg ">
       <div>
@@ -57,11 +55,17 @@ const PopoverUser: React.FC = () => {
       <div className="">
         <button onClick={handleClickDisconnect}>Disconnect</button>
       </div>
-      {abcCoin && (
-        <>
-          <p>ABC Coin: {Number(abcCoin)}</p>
-          <p>XYZ Coin: {Number(xyzCoin)}</p>
-        </>
+      {abcCoin && xyzCoin && (
+        <div className="flex gap-2 ">
+          <div>
+            <p>ABC COIN</p>
+            <p>{Number(abcCoin)}</p>
+          </div>
+          <div className="">
+            <p>XYZ COIN</p>
+            <p>{Number(xyzCoin)}</p>
+          </div>
+        </div>
       )}
 
       <p>Address: {displayWalletAddress(address)}</p>
