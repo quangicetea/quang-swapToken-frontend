@@ -58,7 +58,12 @@ const PopoverUser: React.FC = () => {
         )}
       </div>
       <div className="">
-        <button className="hover:text-red-500 border rounded-xl p-2 bg-red-300" onClick={handleClickDisconnect}>Disconnect</button>
+        <button
+          className="hover:text-red-500 border rounded-xl p-2 bg-red-300"
+          onClick={handleClickDisconnect}
+        >
+          Disconnect
+        </button>
       </div>
       {abcCoin && xyzCoin && (
         <div className="">
