@@ -65,7 +65,7 @@ export default function FormCustom({
         style={{ minWidth: 500 }}
       ></Form.Item>
       <Form.Item {...tailLayout}>
-        <Button className="bg-blue-600 mx-1 text-white" htmlType="submit" disabled={isLoading}>
+        <Button className="mx-1 text-white bg-blue-600" htmlType="submit" disabled={isLoading}>
           {buttonLabel}
         </Button>
         <Button htmlType="button" onClick={onReset}>
@@ -76,9 +76,9 @@ export default function FormCustom({
         </Button>
       </Form.Item>
       {data && data?.hash && (
-        <div className="flex w-full justify-center">
+        <div className="flex justify-center w-full">
           <a
-            className="p-2 border rounded-lg bg-red-400 text-white"
+            className="p-2 text-white bg-red-400 border rounded-lg"
             target="_blank"
             href={`https://goerli.etherscan.io/tx/${data?.hash}`}
           >

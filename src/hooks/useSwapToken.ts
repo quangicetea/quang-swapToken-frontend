@@ -1,9 +1,8 @@
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from "wagmi";
 import abi from "../contracts/abi/TokenSwap.json";
 import { TOKENSWAP_ADDRESS } from "../constants/address";
-import { toast } from "react-toastify";
 
-const useSwapToken = (token: `0x${string}` | undefined, amountSender: number) => {
+const useSwapToken = (token: `0x${string}` | undefined, amountSender: number | bigint) => {
   const {
     config,
     error: prepareError,
@@ -14,9 +13,6 @@ const useSwapToken = (token: `0x${string}` | undefined, amountSender: number) =>
     functionName: "swap",
     args: [token, amountSender],
     enabled: Boolean(amountSender) && Boolean(token),
-    onError(err) {
-      toast.error(err.name);
-    },
   });
   const { data, error, isError, write } = useContractWrite(config);
   const { isLoading, isSuccess } = useWaitForTransaction({

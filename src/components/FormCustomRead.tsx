@@ -65,7 +65,7 @@ export default function FormCustomRead({
         style={{ minWidth: 500 }}
       ></Form.Item>
       <Form.Item {...tailLayout}>
-        <Button className="bg-blue-600 mx-1 text-white" htmlType="submit" disabled={isLoading}>
+        <Button className="mx-1 text-white bg-blue-600" htmlType="submit" disabled={isLoading}>
           {buttonLabel}
         </Button>
         <Button htmlType="button" onClick={onReset}>

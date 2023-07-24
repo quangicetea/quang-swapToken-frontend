@@ -15,7 +15,7 @@ const useTokenBalance = (
     },
   });
 
-  return { userBalance: userBalance?.formatted || "0", loadingBalance: isLoading };
+  return { userBalance: userBalance?.value || 0, loadingBalance: isLoading };
 };
 
 export default useTokenBalance;

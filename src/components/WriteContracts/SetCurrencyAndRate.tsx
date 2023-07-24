@@ -3,7 +3,6 @@ import * as React from "react";
 import { XYZCOIN_ADDRESS } from "../../constants/address";
 import useSetSwappedCurrencyRateAndDecimals from "../../hooks/useSetSwappedCurrencyRateAndDecimals";
 import FormCustom from "../FormCustom";
-
 export function SetCurrencyAndRate() {
   const [inputData, setInputData] = React.useState<any>({});
   const { data, write } = useSetSwappedCurrencyRateAndDecimals(

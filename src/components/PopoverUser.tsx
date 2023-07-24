@@ -6,7 +6,6 @@ import { displayWalletAddress } from "../utils";
 import { UserOutlined } from "@ant-design/icons";
 import { VALIDCHANINS } from "../constants/networks";
 import { ABCCOIN_ADDRESS, USER1_ADDRESS, XYZCOIN_ADDRESS } from "../constants/address";
-
 import useTokenBalance from "../hooks/useTokenBalance";
 const buttonWidth = 70;
 const PopoverUser: React.FC = () => {
@@ -41,46 +40,46 @@ const PopoverUser: React.FC = () => {
   }
   const { userBalance: xyzCoin } = useTokenBalance(XYZCOIN_ADDRESS, USER1_ADDRESS, chain?.id);
   const { userBalance: abcCoin } = useTokenBalance(ABCCOIN_ADDRESS, USER1_ADDRESS, chain?.id);
-
   const content = (
     <div className="font-bold text-center bg-white rounded-lg ">
-      <div>
-        {isValidChain ? (
-          <button onClick={showModal}>
-            {" "}
-            <Badge status="success" /> Network: {chain?.name}
-          </button>
-        ) : (
-          <button onClick={showModal}>
-            <Badge status="warning" /> Not supported chain
-          </button>
-        )}
-      </div>
-      <div className="">
-        <button
-          className="hover:text-red-500 border rounded-xl p-2 bg-red-300"
-          onClick={handleClickDisconnect}
-        >
-          Disconnect
-        </button>
-      </div>
-      {abcCoin && xyzCoin && (
+      <>
+        <div>
+          {isValidChain ? (
+            <button onClick={showModal}>
+              {" "}
+              <Badge status="success" /> Network: {chain?.name}
+            </button>
+          ) : (
+            <button onClick={showModal}>
+              <Badge status="warning" /> Not supported chain
+            </button>
+          )}
+        </div>
         <div className="">
-          <p>BALANCES</p>
-          <div className="flex gap-2 ">
-            <div className="">
-              <p>ABC COIN</p>
-              <p>{Number(abcCoin)}</p>
-            </div>
-            <div className="">
-              <p>XYZ COIN</p>
-              <p>{Number(xyzCoin)}</p>
+          <button
+            className="p-2 bg-red-300 border hover:text-red-500 rounded-xl"
+            onClick={handleClickDisconnect}
+          >
+            Disconnect
+          </button>
+        </div>
+        {abcCoin && xyzCoin && (
+          <div className="">
+            <p>BALANCES</p>
+            <div className="flex gap-2 ">
+              <div className="">
+                <p>ABC COIN</p>
+                <p>{Number(abcCoin)}</p>
+              </div>
+              <div className="">
+                <p>XYZ COIN</p>
+                <p>{Number(xyzCoin)}</p>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-
-      <p>Address: {displayWalletAddress(address)}</p>
+        )}
+        <p>Address: {displayWalletAddress(address)}</p>
+      </>
     </div>
   );
   React.useEffect(() => {
